@@ -27,7 +27,6 @@ i = args.index
 model = train_model()
 
 try:
-    i = 0
     while True:
         accx, _, _ = Rx_accel_data()
 
@@ -36,12 +35,6 @@ try:
         if len(data) > data_len:
             sauvegarder_en_json(f"../data/{datafolder}/" + filename + str(i) + ".json", data)
             data.clear()
-
-            histo = histogramme(recuperer_de_json(f"../data/{datafolder}/" + filename + str(i) + ".json"))[:-1]
-            num_features = 19
-            X_new = np.reshape(histo, (1, num_features))
-            print(model.predict(X_new))
-
             i += 1
 
 except KeyboardInterrupt:

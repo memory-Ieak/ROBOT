@@ -2,6 +2,7 @@
 
 import os
 import pandas as pd
+import numpy as np
 
 from sklearn.model_selection import train_test_split
 
@@ -43,3 +44,14 @@ def train_model():
     model.fit(X_train, y_train)
 
     return model
+
+if __name__ == '__main__':
+
+    model = train_model()
+
+    data = histogramme(recuperer_de_json("../data/normal/test0.json"))[:-1]
+    num_features = 19  # Replace with the correct number of features
+    X_new = np.reshape(data, (1, num_features))
+
+
+    print(model.predict(X_new))
