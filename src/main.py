@@ -8,7 +8,6 @@ from train_data import train_model
 
 model = train_model()
 
-
 try:
     while True:
         accx, _, _ = Rx_accel_data()

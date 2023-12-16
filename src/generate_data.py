@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import argparse
 
 from utils import *
 from train_data import train_model
@@ -8,11 +9,20 @@ from train_data import train_model
 filename = "data"
 datafolder = "human"
 
-if len(sys.argv) > 1:
-    filename = sys.argv[1]
+# Initialisation de l'objet ArgumentParser
+parser = argparse.ArgumentParser(description='Script de collecte de données et de prédiction avec modèle.')
 
-if len(sys.argv) > 2:
-    datafolder = sys.argv[2]
+# Ajout des arguments en ligne de commande
+parser.add_argument('--filename', default="data", help='Nom du fichier pour sauvegarder les données.')
+parser.add_argument('--label', default="normal", help='Dossier pour sauvegarder les données.')
+parser.add_argument('--index', type=int, default=0, help='Indice de départ pour les fichiers.')
+
+args = parser.parse_args()
+
+# Utilisation des arguments
+filename = args.filename
+datafolder = args.label
+i = args.index
 
 model = train_model()
 
