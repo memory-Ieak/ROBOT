@@ -73,7 +73,7 @@ try:
             current_time = datetime.now().strftime('%H:%M:%S')
             
             # Affiche l'heure et l'état de sortie du modèle
-            print(f"{current_time}: Le capteur est {prompt_dict[str(model.predict(X_new)[0])]}")
+            print(f"[{current_time}] Le capteur {prompt_dict[str(model.predict(X_new)[0])]}")
 
 except KeyboardInterrupt:
     pass
