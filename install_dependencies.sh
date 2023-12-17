@@ -10,4 +10,6 @@ fi
 python3 -m pip install --upgrade pip
 python3 -m pip install numpy matplotlib scikit-learn
 
+chmod +x src/*.py
+
 echo "Les bibliothèques ont été installées avec succès."
