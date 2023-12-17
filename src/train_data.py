@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import argparse
 import pandas as pd
 import numpy as np
 
@@ -16,7 +17,6 @@ def train_model():
     df = pd.DataFrame(columns=noms_colonnes)
 
 
-    folders = ["human", "normal", "obstacle"]
     i = 0
     for folder in folders:
         directory = os.fsencode(f'../data/{folder}')
@@ -35,7 +35,7 @@ def train_model():
     X = df.drop("Label", axis=1).values
     y = df["Label"].values
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, _, y_train, _ = train_test_split(X, y, test_size=0.2, random_state=42)
 
 
 
@@ -47,9 +47,14 @@ def train_model():
 
 if __name__ == '__main__':
 
+    parser = argparse.ArgumentParser(description='Faire des prédictions avec un modèle.')
+    parser.add_argument('--file_path', type=str, default='../data/normal/test0.json',
+                        help='Chemin du fichier JSON de test')
+    args = parser.parse_args()
+
     model = train_model()
 
-    data = histogramme(recuperer_de_json("../data/normal/test0.json"))[:-1]
+    data = histogramme(recuperer_de_json(args.file_path))
     num_features = 19  # Replace with the correct number of features
     X_new = np.reshape(data, (1, num_features))
 

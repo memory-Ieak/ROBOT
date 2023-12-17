@@ -1,0 +1,28 @@
+{
+  "folders": ["human", "normal", "obstacle"],
+
+  "serial": {
+    "port": "/dev/ttyACM0",
+    "baudrate": 115200
+  },
+
+  "data": {
+    "format": "=BfffB",
+    "begin": 1,
+    "end": 4,
+    "sampling": 5,
+    "time": 13.4
+  },
+
+  "labels": {
+    "human": 0,
+    "normal": 1,
+    "obstacle": 2
+  },
+  
+  "prompts": {
+    "0" : "manipulé par un humain",
+    "1" : "normal",
+    "2" : "a subit un choc"
+  }
+}

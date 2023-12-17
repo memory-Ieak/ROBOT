@@ -40,12 +40,6 @@ print(f"utilisation du modèle toutes les {data_len * 0.005}s")
 
 model = train_model()
 
-dict = {
-    0 : "manipulé par un humain",
-    1 : "normal",
-    2 : "a subit un choc",
-}
-
 try:
     while True:
         accx, _, _ = Rx_accel_data()
@@ -56,7 +50,7 @@ try:
         data.append(accx)
 
         if len(data) == data_len:
-            histo = histogramme(data)[:-1]
+            histo = histogramme(data)
 
             if plot:
                 # Plot de la data brut
@@ -79,7 +73,7 @@ try:
             current_time = datetime.now().strftime('%H:%M:%S')
             
             # Affiche l'heure et l'état de sortie du modèle
-            print(f"{current_time}: Le capteur est {dict[model.predict(X_new)[0]]}")
+            print(f"{current_time}: Le capteur est {prompt_dict[str(model.predict(X_new)[0])]}")
 
 except KeyboardInterrupt:
     pass
